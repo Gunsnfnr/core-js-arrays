@@ -398,8 +398,26 @@ function generateOdds(len) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
+function getElementByIndices(arr, indices) {
+  let elem = null;
+  let level = 0;
+
+  function diveIntoArr(theArray) {
+    function findElem(element) {
+      if (indices[level] === theArray.indexOf(element)) {
+        elem = element;
+      }
+    }
+    theArray.map(findElem);
+    if (Array.isArray(elem)) {
+      level += 1;
+      return diveIntoArr(elem);
+    }
+    return elem;
+  }
+  elem = diveIntoArr(arr);
+
+  return elem;
 }
 
 /**
