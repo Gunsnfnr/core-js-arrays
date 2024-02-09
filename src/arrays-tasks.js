@@ -654,31 +654,22 @@ function shiftArray(arr, n) {
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-  const copyArr = [];
+  const resArr = [];
   const digits = [
-    { zero: 0 },
-    { one: 1 },
-    { two: 2 },
-    { three: 3 },
-    { four: 4 },
-    { five: 5 },
-    { six: 6 },
-    { seven: 7 },
-    { eight: 8 },
-    { nine: 9 },
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
   ];
-  function handleArr(elementInArray) {
-    function handleDigits(element) {
-      if (elementInArray === Object.keys(element)[0]) {
-        copyArr.push(element);
-      }
-    }
-    digits.map(handleDigits);
-  }
-  arr.map(handleArr);
-  copyArr.sort((a, b) => Object.values(a)[0] - Object.values(b)[0]);
-
-  return copyArr.map((elem) => String(Object.keys(elem)[0]));
+  arr.map((elem) => resArr.push(digits.indexOf(elem)));
+  resArr.sort((a, b) => a - b);
+  return resArr.map((elem) => digits[elem]);
 }
 
 /**
