@@ -653,8 +653,32 @@ function shiftArray(arr, n) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const copyArr = [];
+  const digits = [
+    { zero: 0 },
+    { one: 1 },
+    { two: 2 },
+    { three: 3 },
+    { four: 4 },
+    { five: 5 },
+    { six: 6 },
+    { seven: 7 },
+    { eight: 8 },
+    { nine: 9 },
+  ];
+  function handleArr(elementInArray) {
+    function handleDigits(element) {
+      if (elementInArray === Object.keys(element)[0]) {
+        copyArr.push(element);
+      }
+    }
+    digits.map(handleDigits);
+  }
+  arr.map(handleArr);
+  copyArr.sort((a, b) => Object.values(a)[0] - Object.values(b)[0]);
+
+  return copyArr.map((elem) => String(Object.keys(elem)[0]));
 }
 
 /**
